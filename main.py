@@ -5,67 +5,103 @@
     Student Directed Project
 '''
 #Budget Planner
+print("Hello!, I am your personalized budget planner")
+print("Let's get started how much you earn")
 
-#INCOME
+class Income(object):
+    def __init__(self):
+        self.hour_pay = 0
+        self.hour_work = 0
+        self.total_income = 0
 
-# Hourly Pay
-print("How much do you make an hour?")
-hourPay = int(input())
-print("How many hours do you work?")
-hourWork = int(input())
-weeklyPay = hourPay * hourWork
-print("Weekly wage:", weeklyPay )
-MonthlyPay = weeklyPay * 4
-print("Monthly wage:",MonthlyPay)
+    def Hourly_pay(self):
+        print("How many incomes of your income are paid by hour?")
+        n = int(input())
+        if not type(n) is int:
+            raise ValueError
+        for i in range(n):
+            print("How much money do you earn in an hour?")
+            hour_pay = int(input())
+            if not type(hour_pay) is int:
+                raise ValueError
+            else:
+                print("How many hours do you work per week?")
+            hour_work = int(input())
+            if not type(hour_work) is int:
+                    raise ValueError
+            else:
+                weekly_income = hour_pay * hour_work
+                print("On average your weekly income is",weekly_income)
+                print("On average your monthly income is",(weekly_income*4))
+                print("On average your annual income is",(weekly_income*52))
 
+    def Total_Income(self):
+        income = {}
+        print("How many incomes do you have?")
+        n = int(input())
+        if not type(n) is int:
+                raise ValueError
+        for i in range(n):
+            name = input("Enter income name: ")
+            if not type(name) is str:
+                raise ValueError
+            amount = int(input("Enter income amount: "))
+            if not type(amount) is int:
+                raise ValueError
+            income[name] = amount 
+        incomeList = '\n'.join(f'{key}: {value}' for key, value in income.items())
+        print("List of Incomes")
+        print(incomeList)
+        total_income = sum(income.values())
+        print("Total Income:",total_income)  
 
-def returnSum(income):
- 
-    sum = 0
-    for i in income.values():
-        sum = sum + i
-    return sum
+class Expenses(object):
+    def __init__(self):
+        self.name = 0
+        self.amount = 0
+        self.total_expenses = 0
 
-income = {}
- 
-print("How many incomes do you have?")
-n = int(input())
- 
-for i in range(n):
+    def Total_Expenses(self):
+        expenses = {}
+        print("How many expenses do you have?")
+        n = int(input())
+        if not type(n) is int:
+                raise TypeError("Sorry! You entered an incorrect value, please try again")
+        for i in range(n):
+            name = input("Enter expense name: ")
+            if not type(name) is str:
+                raise TypeError("Sorry! You entered an incorrect value, please try again")
+            amount = int(input("Enter expense amount: "))
+            if not type(amount) is int:
+                raise TypeError("Sorry! You entered an incorrect value, please try again")
+            expenses[name] = amount 
+        expenseList = '\n'.join(f'{key}: {value}' for key, value in expenses.items())
+        print("List of Expenses")
+        print(expenseList)
+        totalexpenses = sum(expenses.values())
+        print("Total Expenses:",totalexpenses)
     
-    name = input("Enter income name: ")
-    amount = int(input("Enter income amount: "))
-    income[name] = amount 
+class NetIncome(Income,Expenses):
+    def __init__(self):
+        MytotalIncome = self.total_income
+        MyTotExpenses = self.total_expenses
+        MyNet = MytotalIncome - MyTotExpenses
+        print("After processing your income and bills, we've calculated your net income")
+        print(MyNet)
 
-incomeList = '\n'.join(f'{key}: {value}' for key, value in income.items())
+if __name__ == '__main__':
 
-print("List of Incomes")
-print(incomeList)
-Totalincome = returnSum(income)
-print("Total Income:",Totalincome)
+    my_wallet = Income()
+    while True:
+        try:
+            my_wallet.Hourly_pay()
+            my_wallet.Total_Income()
+        except ValueError:
+            print("Sorry! You entered an incorrect value, please try again")
+        else:
+            break
+        
+    my_bills = Expenses()
+    my_bills.Total_Expenses()
 
-#EXPENSES
-
-def returnSum(expenses):
- 
-    sum = 0
-    for i in expenses.values():
-        sum = sum + i
-    return sum
-
-expenses = {}
- 
-print("How many expenses do you have?")
-n = int(input())
- 
-for i in range(n):
-    
-    name = input("Enter expense name: ")
-    amount = int(input("Enter expense amount: "))
-    expenses[name] = amount 
-
-expensesList = '\n'.join(f'{key}: {value}' for key, value in expenses.items())
-
-print("List of Expenses")
-Totalexpenses = returnSum(expenses)
-print("Total Expenses:",Totalexpenses)
+    my_net = NetIncome()
