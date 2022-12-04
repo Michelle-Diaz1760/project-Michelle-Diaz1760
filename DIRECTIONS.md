@@ -36,25 +36,25 @@ The student provided rubric is worth 75 points and is specific to the individual
     * Application uses Object-Oriented Programming classes designed and written by the student. (10pt)
     * Application is [documented using Docstrings](https://realpython.com/documenting-python-code/) appropriately with comments used to flag specific blocks of code. (5pt)
 * **Student Grading Rubric (75pt)**
-  * Income Function (35 pt)
-     * Ability to take user input of the income name and amount as a dictionary
-     * Ability to properly sum all the values of the income amount into a singular total income
-     * Ability to create a variable to hold the information of the total income as a singular value. 
-  * Expenses Function (35 pt)
-     * Ability to take user input of the expenses name and amount as a dictionary
-     * Ability to properly sum all the values of the expernses amount into a singular total expense
-     * Ability to create a variable to hold the information of the total expense as a singular value. 
-  * Saving Percentage Function (35 pt)
-     * Ability to operate a difference between the total income amount and the total expenses amount to create a new variable of the net amount of money available for        the user.
-     * Ability to calculate a savings amount from a user input percentage of how many money the user wants to save based from the net amount of money available.
-     * Ability to create a variable to hold savings information and print the amount that will be saved on a monthly basis. 
-  * Personal Expenses (30pt)
-     * Ability to operate the difference between the net amount of money available with that of the savings amount to calculate how much money is available for                personal expenses.
-     * Ability to print this amount as a final result of the budget plan. 
+  * Income Function (15 pt)
+     * Ability to take user input of the income name and amount as a dictionary (5pt)
+     * Ability to properly sum all the values of the income amount into a singular total income (5pt)
+     * Ability to create a variable to hold the information of the total income as a singular value. (5pt)
+  * Expenses Function (15 pt)
+     * Ability to take user input of the expenses name and amount as a dictionary (5pt)
+     * Ability to properly sum all the values of the expernses amount into a singular total expense (5pt)
+     * Ability to create a variable to hold the information of the total expense as a singular value. (5pt)
+  * Saving Percentage Function (15 pt)
+     * Ability to operate a difference between the total income amount and the total expenses amount to create a new variable of the net amount of money available for        the user. (5pt)
+     * Ability to calculate a savings amount from a user input percentage of how many money the user wants to save based from the net amount of money available. (5pt)
+     * Ability to create a variable to hold savings information and print the amount that will be saved on a monthly basis. (5pt)
+  * Personal Expenses (15pt)
+     * Ability to operate the difference between the net amount of money available with that of the savings amount to calculate how much money is available for                personal expenses. (5pt)
+     * Ability to print this amount as a final result of the budget plan. (5pt)
   * Formatting of an estimation of the budget on a yearly, monthly and weekly basis (15 pt)
-     * Ability to calculate and return the information of budget plan in a default monthly format.
-     * Ability to calculate and return the information of budget plan in a annual format.
-     * Ability to calculate and return the information of budget plan in a weekly format.
+     * Ability to calculate and return the information of budget plan in a default monthly format. (5pt)
+     * Ability to calculate and return the information of budget plan in a annual format. (5pt)
+     * Ability to calculate and return the information of budget plan in a weekly format. (5pt)
 
 Total Points: 150
 
