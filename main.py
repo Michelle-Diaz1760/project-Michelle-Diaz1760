@@ -5,35 +5,35 @@
     Student Directed Project
 '''
 #Budget Planner
-print("Hello!, I am your personalized budget planner")
-print("Let's get started how much you earn")
-
-class Income(object):
+class Monthly():
     def __init__(self):
-        self.hour_pay = 0
-        self.hour_work = 0
         self.total_income = 0
+        self.total_expenses = 0
+        self.net_income = 0
+        self.amount_saved = 0
+        self.non_essentials = 0
 
     def Hourly_pay(self):
-        print("How many incomes of your income are paid by hour?")
+        print("How many of your incomes have an hourly wage?")
         n = int(input())
         if not type(n) is int:
             raise ValueError
         for i in range(n):
-            print("How much money do you earn in an hour?")
-            hour_pay = int(input())
-            if not type(hour_pay) is int:
+            JobName=input("Income name:")
+            if not type(JobName) is str:
                 raise ValueError
-            else:
-                print("How many hours do you work per week?")
-            hour_work = int(input())
-            if not type(hour_work) is int:
-                    raise ValueError
-            else:
-                weekly_income = hour_pay * hour_work
-                print("On average your weekly income is",weekly_income)
-                print("On average your monthly income is",(weekly_income*4))
-                print("On average your annual income is",(weekly_income*52))
+            print("How much money do you earn in an hour?")         
+            hour_pay = float(input())
+            if not type(hour_pay) is float:
+                raise ValueError
+            print("How many hours do you work per week?")
+            hour_work = float(input())
+            if not type(hour_work) is float:
+                raise ValueError
+            weekly_income = hour_pay * hour_work
+            monthly_income = weekly_income * 4
+            print(f"On average your monthly income for {JobName} is ${monthly_income}")
+            print("Next Income->")
 
     def Total_Income(self):
         income = {}
@@ -45,63 +45,67 @@ class Income(object):
             name = input("Enter income name: ")
             if not type(name) is str:
                 raise ValueError
-            amount = int(input("Enter income amount: "))
-            if not type(amount) is int:
+            amount = float(input("Enter monthly income amount: "))
+            if not type(amount) is float:
                 raise ValueError
             income[name] = amount 
-        incomeList = '\n'.join(f'{key}: {value}' for key, value in income.items())
+        incomeList = '\n'.join(f'{key}: ${value}' for key, value in income.items())
         print("List of Incomes")
         print(incomeList)
-        total_income = sum(income.values())
-        print("Total Income:",total_income)  
-
-class Expenses(object):
-    def __init__(self):
-        self.name = 0
-        self.amount = 0
-        self.total_expenses = 0
-
+        self.total_income = sum(income.values())
+        print(f"Total Monthly Income: ${self.total_income}")
+        return self.total_income
+      
     def Total_Expenses(self):
         expenses = {}
-        print("How many expenses do you have?")
+        print("How many monthly expenses do you have?")
         n = int(input())
         if not type(n) is int:
-                raise TypeError("Sorry! You entered an incorrect value, please try again")
+                raise TypeError
         for i in range(n):
             name = input("Enter expense name: ")
             if not type(name) is str:
-                raise TypeError("Sorry! You entered an incorrect value, please try again")
-            amount = int(input("Enter expense amount: "))
+                raise TypeError
+            amount = int(input("Enter monthly expense amount: "))
             if not type(amount) is int:
-                raise TypeError("Sorry! You entered an incorrect value, please try again")
+                raise TypeError
             expenses[name] = amount 
-        expenseList = '\n'.join(f'{key}: {value}' for key, value in expenses.items())
+        expenseList = '\n'.join(f'{key}: ${value}' for key, value in expenses.items())
         print("List of Expenses")
         print(expenseList)
-        totalexpenses = sum(expenses.values())
-        print("Total Expenses:",totalexpenses)
+        self.total_expenses = sum(expenses.values())
+        print(f"Total Monthly Expenses: ${self.total_expenses}")
+        return self.total_expenses
+
+    def Net_Income(self):
+        I = self.total_income 
+        E = self.total_expenses
+        self.net_income = I - E
+        print (f"Monthly Net Income: ${self.net_income}") 
+        return self.net_income
+
+    def Percent_Savings(self):
+        print("What percent from your net income do you want to save?")
+        print("Please enter a decimal value:")
+        personalized_savings = float(input())
+        self.amount_saved = self.net_income * personalized_savings
+        print(f"Monthly Savings: ${self.amount_saved:.2f}")
+        return self.amount_saved
+
+    def Non_Essential(self):
+        self.non_essentials = self.net_income - self.amount_saved
+        print(f"Monthly Money for Non-Essentials: ${self.non_essentials}")
+        return self.non_essentials
     
-class NetIncome(Income,Expenses):
-    def __init__(self):
-        MytotalIncome = self.total_income
-        MyTotExpenses = self.total_expenses
-        MyNet = MytotalIncome - MyTotExpenses
-        print("After processing your income and bills, we've calculated your net income")
-        print(MyNet)
 
 if __name__ == '__main__':
 
-    my_wallet = Income()
-    while True:
-        try:
-            my_wallet.Hourly_pay()
-            my_wallet.Total_Income()
-        except ValueError:
-            print("Sorry! You entered an incorrect value, please try again")
-        else:
-            break
-        
-    my_bills = Expenses()
-    my_bills.Total_Expenses()
+    # let the user chose if they want a monthly, weekly, or annual budget
+    my_monthly_budget = Monthly()
+    my_monthly_budget.Hourly_pay()
+    my_monthly_budget.Total_Income()
+    my_monthly_budget.Total_Expenses()
+    my_monthly_budget.Net_Income()
+    my_monthly_budget.Percent_Savings()
+    my_monthly_budget.Non_Essential()
 
-    my_net = NetIncome()
