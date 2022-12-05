@@ -161,8 +161,9 @@ class Budget_Plan():
         print("---------------")
 
     def M_Info_Summary(self):
+        month = input("Enter Month:")
         print("---------------")
-        print("Monthly Budget Review:")
+        print(f"{month} Budget Review:")
         print(f"Total Income:{self.total_income}")
         print(f"Total Expenses:{self.total_expenses}")
         print(f"Total Net Income:{self.net_income}")
@@ -171,6 +172,7 @@ class Budget_Plan():
         print("---------------")
 
     def A_Info_Summary(self):
+        year = input("Enter Year:")
         print("---------------")
         print("Annual Budget Review:")
         print(f"Total Income:{(self.total_income*12):.2f}")
@@ -180,57 +182,283 @@ class Budget_Plan():
         print(f"Total Non-Essentials:{(self.non_essentials*12):.2f}")
         print("---------------")
 
+class Pass_Fail():
+    def __init__(self):
+        self.total_income = 0
+        self.total_fixed_expenses = 0
+        self.total_variable_expenses = 0
+        self.total_expenses = 0
+        self.net_income = 0
+        self.amount_saved = 0
+        self.non_essentials = 0
+
+    def Total_Income(self):
+        income = {}
+        print("Please enter Monthly Incomes:")
+        print("Type DONE when finished")
+        while True:
+            name = input("Enter income name: ")
+            if name == "DONE":
+                break 
+            else:
+                if not type(name) is str:
+                    raise ValueError
+                amount = float(input("Enter monthly income amount: "))
+                if not type(amount) is float:
+                    raise ValueError
+                income[name] = amount 
+        self.total_income = sum(income.values())
+        print(f"Total Monthly Income: ${self.total_income}")
+        print("---------------")
+        return self.total_income
+ 
+    def Fixed_Expenses(self):
+        expenses = {}
+        print("Please enter monthly fixed expenses:")
+        print("Type DONE when finished")
+        while True:
+                name = input("Enter expense name: ")
+                if name == "DONE":
+                    break 
+                else:
+                    if not type(name) is str:
+                        raise TypeError
+                    amount = int(input("Enter monthly expense amount: "))
+                    if not type(amount) is int:
+                        raise TypeError
+                    expenses[name] = amount
+        self.total_fixed_expenses = sum(expenses.values())
+        print(f"Total Monthly Fixed Expenses: ${self.total_fixed_expenses}")
+        print("---------------")
+        return self.total_fixed_expenses
+
+    def Variable_Expenses(self):
+            expenses = {}
+            print("Please enter monthly variable expenses:")
+            print("Type DONE when finished")
+            while True:
+                    name = input("Enter expense name: ")
+                    if name == "DONE":
+                        break 
+                    else:
+                        if not type(name) is str:
+                            raise TypeError
+                        amount = int(input("Enter monthly expense amount: "))
+                        if not type(amount) is int:
+                            raise TypeError
+                        expenses[name] = amount
+            self.total_variable_expenses = sum(expenses.values())
+            print(f"Total Monthly Variable Expenses: ${self.total_variable_expenses}")
+            print("---------------")
+            
+            return self.total_variable_expenses
+    
+    def Total_Expenses(self):
+        F = self.total_fixed_expenses
+        V = self.total_variable_expenses
+        self.total_expenses = F + V
+        print (f"Total Monthly Expenses: ${self.total_expenses}")
+        print("---------------")
+        return self.total_expenses
+
+    def Percent_Savings(self):
+            print("How much money did you save?")
+            personalized_savings = float(input("Enter Savings:"))
+            if not type(personalized_savings) is float:
+                    raise ValueError 
+            self.amount_saved = personalized_savings
+            return self.amount_saved
+    
+    def Non_Essential(self):
+        non_essentials = {}
+        print("Please enter monthly non-essentials:")
+        print("Type DONE when finished")
+        while True:
+                name = input("Enter non-essential name: ")
+                if name == "DONE":
+                    break 
+                else:
+                    if not type(name) is str:
+                        raise TypeError
+                    amount = int(input("Enter non-essential amount: "))
+                    if not type(amount) is int:
+                        raise TypeError
+                    non_essentials[name] = amount
+        self.non_essentials = sum(non_essentials.values())
+        print(f"Total Non-Essential Expenses: ${self.non_essentials}")
+        print("---------------")
+        
+        return self.non_essentials
+
+    def passORfail_Expenses(self):
+        I = self.total_income 
+        half_income = I * 0.50
+        E = self.total_expenses
+        if E <= half_income:
+            print("PASS EXPENSE BUDGET!")
+        elif E > half_income:
+            print("FAILED EXPENSE BUDGET")
+
+    def passORfail_Percent_Savings(self):
+        I = self.total_income 
+        AS = self.amount_saved
+        twenty_income = I * 0.20
+        if AS <= twenty_income:
+            print("FAILED SAVING BUDGET!")
+        elif AS > twenty_income :
+            print("PASS EXPENSE BUDGET")
+
+    def passORfail_Non_Essential(self):
+        I = self.total_income
+        NE = self.non_essentials
+        thirty_income = I * 0.30
+        if NE <= thirty_income:
+            print("PASS NON-ESSENTIALS BUDGET!")
+        elif NE > thirty_income :
+            print("FAILED NON-ESSENTIALS BUDGET")
+    
+    def PERpassORfail_Expenses(self):
+        I = self.total_income 
+        num = int(input("what is your budget for expenses:"))
+        int_percent = num/100
+        budget_income = I * int_percent
+        E = self.total_expenses
+        if E <= budget_income:
+            print("PASS EXPENSE BUDGET!")
+        elif E > budget_income:
+            print("FAILED EXPENSE BUDGET")
+
+    def PERpassORfail_Percent_Savings(self):
+        I = self.total_income 
+        AS = self.amount_saved
+        num = int(input("what is your budget for savings:"))
+        int_percent = num/100
+        budget_income = I * int_percent
+        if AS <= budget_income:
+            print("FAILED SAVING BUDGET!")
+        elif AS > budget_income :
+            print("PASS EXPENSE BUDGET")
+
+    def PERpassORfail_Non_Essential(self):
+        I = self.total_income
+        NE = self.non_essentials
+        num = int(input("what is your budget for non-essentials:"))
+        int_percent = num/100
+        budget_income = I * int_percent
+        if NE <= budget_income:
+            print("PASS NON-ESSENTIALS BUDGET!")
+        elif NE > budget_income :
+            print("FAILED NON-ESSENTIALS BUDGET")
+
 if __name__ == '__main__':
     print("Hello! I am your personalized budget planner")
+    print("Do you want to make a budget plan?")
+    x = input()
+    if x == "YES":    
+        while True:
+            try:
+                Wage = Hourly_pay()
+            except ValueError as VE:
+                            print("INCORRECT!")
+            else:
+                my_budget = Budget_Plan()
+                while True:
+                    try:
+                        my_budget.Total_Income()
+                    except ValueError as VE:
+                        print("INCORRECT!")
+                    else:
+                        while True:
+                            try:
+                                my_budget.Fixed_Expenses()
+                            except ValueError as VE:
+                                print("INCORRECT!")
+                            else:
+                                while True:
+                                    try:
+                                        my_budget.Variable_Expenses()
+                                    except ValueError as VE:
+                                        print("INCORRECT!")
+                                    else:
+                                        while True:
+                                            try:
+                                                my_budget.Total_Expenses()
+                                            except ValueError as VE:
+                                                print("INCORRECT!")
+                                            else:
+                                                my_budget.Net_Income()
+                                                while True:
+                                                    try:
+                                                        my_budget.Percent_Savings()
+                                                    except ValueError as VE:
+                                                            print("INCORRECT!")
+                                                    else:
+                                                        my_budget.Non_Essential()
+                                                        print("Information Summary:")
+                                                        print("Type WEEKLY, MONTHLY, OR ANNUAL")
+                                                        while True:
+                                                                budget_plan = input()
+                                                                if budget_plan == "DONE":
+                                                                    quit()
+                                                                if budget_plan == "WEEKLY":
+                                                                    my_budget.W_Info_Summary()
+                                                                elif budget_plan == "MONTHLY":
+                                                                    my_budget.M_Info_Summary()
+                                                                elif budget_plan == "ANNUAL":
+                                                                    my_budget.A_Info_Summary()
+    if x == "NO":
+        print("Do you want to see if you pass your current budget plan?")
+        y=input()
+        if y=="YES":
+            passORFail = Pass_Fail()
     while True:
         try:
-            Wage = Hourly_pay()
+            passORFail.Total_Income()
         except ValueError as VE:
-                        print("INCORRECT!")
+            print("INCORRECT!")
         else:
-            my_budget = Budget_Plan()
             while True:
                 try:
-                    my_budget.Total_Income()
+                    passORFail.Fixed_Expenses()
                 except ValueError as VE:
                     print("INCORRECT!")
                 else:
                     while True:
                         try:
-                            my_budget.Fixed_Expenses()
+                            passORFail.Variable_Expenses()
                         except ValueError as VE:
                             print("INCORRECT!")
                         else:
                             while True:
                                 try:
-                                    my_budget.Variable_Expenses()
+                                    passORFail.Total_Expenses()
                                 except ValueError as VE:
                                     print("INCORRECT!")
                                 else:
                                     while True:
                                         try:
-                                            my_budget.Total_Expenses()
+                                            passORFail.Percent_Savings()
                                         except ValueError as VE:
-                                            print("INCORRECT!")
+                                                print("INCORRECT!")
                                         else:
-                                            my_budget.Net_Income()
                                             while True:
                                                 try:
-                                                    my_budget.Percent_Savings()
+                                                    passORFail.Non_Essential()
                                                 except ValueError as VE:
-                                                        print("INCORRECT!")
-                                                else:
-                                                    my_budget.Non_Essential()
-                                                    print("Information Summary:")
-                                                    print("Type WEEKLY, MONTHLY, OR ANNUAL")
-                                                    while True:
-                                                            budget_plan = input()
-                                                            if budget_plan == "DONE":
-                                                                quit()
-                                                            if budget_plan == "WEEKLY":
-                                                                my_budget.W_Info_Summary()
-                                                            elif budget_plan == "MONTHLY":
-                                                                my_budget.M_Info_Summary()
-                                                            elif budget_plan == "ANNUAL":
-                                                                my_budget.A_Info_Summary()
-                                                            
+                                                    print("INCORRECT!")
+                                                    break
+                                                else: 
+                                                    print("Do you want to use your own personalized budget plan?")
+                                                while True:
+                                                    budget_plan = input()
+                                                    if budget_plan == "YES":
+                                                        passORFail.PERpassORfail_Expenses()
+                                                        passORFail.PERpassORfail_Percent_Savings()
+                                                        passORFail.PERpassORfail_Non_Essential()
+                                                    elif budget_plan == "NO":
+                                                        passORFail.passORfail_Expenses()
+                                                        passORFail.passORfail_Percent_Savings()
+                                                        passORFail.passORfail_Non_Essential()
+                                                    quit()
+        if y =="NO":
+            quit()
