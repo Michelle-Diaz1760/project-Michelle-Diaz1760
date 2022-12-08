@@ -541,4 +541,3 @@ if x == "no":
                                                             passORFail.passORfail_Percent_Savings()
                                                             quit()
 if y.lower =="no":
-        quit()
